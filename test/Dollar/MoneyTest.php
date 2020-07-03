@@ -13,11 +13,10 @@ class MoneyTest extends TestCase
     public function testMultiplication()
     {
         $five = new Dollar(5);
-        $product = $five->times(2);
-        //assertEqualsは==のため、assertSame(===)の方が方まで見れて良い。
-        $this->assertSame(10, $product->amount);
-        $product = $five->times(3);
-        $this->assertSame(15, $product->amount);
+        //assertEqualsは==のため、値の比較などの場合はassertSame(===)の方が方まで見れて良い。
+        //assertEqualsは属性値のみを見る。逆にassertSameは全く同じかどうかをチェックする。
+        $this->assertEquals(new Dollar(10), $five->times(2));
+        $this->assertEquals(new Dollar(15), $five->times(3));
     }
 
     public function testEquality()

@@ -2,6 +2,7 @@
 namespace Test\Dollar;
 
 use App\Dollar\Dollar;
+use App\Franc\Franc;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,5 +25,13 @@ class MoneyTest extends TestCase
         $dollar = new Dollar(5);
         $this->assertTrue( $dollar->equals( new Dollar(5) ) );
         $this->assertFalse( $dollar->equals( new Dollar(6) ) );
+    }
+
+    public function testFrancMultiplication()
+    {
+        $five = new Franc(5);
+
+        $this->assertEquals(new Franc(10), $five->times(2));
+        $this->assertEquals(new Franc(15), $five->times(3));
     }
 }

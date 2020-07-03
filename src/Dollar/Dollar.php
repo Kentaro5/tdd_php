@@ -5,7 +5,7 @@ namespace App\Dollar;
 // TODO
 // $5 + 10 CHF = $10(レート2:1の場合)
 // $5 * 2 = $10 (済)
-// amountをprivateにする
+// amountをprivateにする(済)
 // Dollarの副作用どうする？ (済)
 // Moneyの丸め処理どうする？
 // equals() (済)
@@ -16,7 +16,7 @@ namespace App\Dollar;
 class Dollar
 {
 
-    public $amount;
+    private $amount;
     public function __construct(int $amount)
     {
         $this->amount = $amount;

@@ -8,6 +8,10 @@ namespace App\Dollar;
 // amountをprivateにする
 // Dollarの副作用どうする？ (済)
 // Moneyの丸め処理どうする？
+// equals() (済)
+// hashCode()
+// nullとの等価性比較
+// 他のオブジェクトとの等価性比較
 
 class Dollar
 {

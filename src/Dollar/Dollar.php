@@ -1,12 +1,12 @@
 <?php
-namespace App\Chapter\One;
+namespace App\Dollar;
 
 
 // TODO
 // $5 + 10 CHF = $10(レート2:1の場合)
 // $5 * 2 = $10 (済)
 // amountをprivateにする
-// Dollarの副作用どうする？
+// Dollarの副作用どうする？ (済)
 // Moneyの丸め処理どうする？
 
 class Dollar
@@ -18,8 +18,9 @@ class Dollar
         $this->amount = $amount;
     }
 
-    public function times(int $multipler):void
+    public function times(int $multipler):Object
     {
-        $this->amount = $this->amount * $multipler;
+        return new Dollar($this->amount * $multipler);
+
     }
 }

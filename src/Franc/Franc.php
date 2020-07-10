@@ -16,10 +16,4 @@ class Franc extends Money
         return new Franc($this->amount * $multipler);
 
     }
-
-    public function equals(Object $object):Bool
-    {
-        $dollar = $object;
-        return $this->amount === $dollar->amount;
-    }
 }

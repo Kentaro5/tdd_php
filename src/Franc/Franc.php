@@ -2,10 +2,10 @@
 namespace App\Franc;
 
 
-class Franc
-{
+use App\Common\Money\Money;
 
-    private $amount;
+class Franc extends Money
+{
     public function __construct(int $amount)
     {
         $this->amount = $amount;
@@ -15,11 +15,5 @@ class Franc
     {
         return new Franc($this->amount * $multipler);
 
-    }
-
-    public function equals(Object $object):Bool
-    {
-        $dollar = $object;
-        return $this->amount === $dollar->amount;
     }
 }

@@ -7,6 +7,13 @@ use App\Franc\Franc;
 abstract class Money
 {
     protected int $amount;
+    protected string $currency;
+
+    public function __construct(int $amount, string $currency)
+    {
+        $this->amount = $amount;
+        $this->currency = $currency;
+    }
 
     abstract function times(Int $multiplier):Object;
 

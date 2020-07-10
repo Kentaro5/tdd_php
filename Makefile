@@ -3,3 +3,4 @@ composer-dump:
 
 run-test:
 	docker run --rm -it -v `pwd`:/app composer:latest vendor/bin/phpunit
+

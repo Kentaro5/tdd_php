@@ -14,4 +14,12 @@ class Money
         return $this->amount === $money->amount && $money_class === $this_class;
     }
 
+    static public function Dollar(Int $amount){
+        return new Dollar($amount);
+    }
+
+    static public function Franc(Int $amount){
+        return new Franc($amount);
+    }
+
 }

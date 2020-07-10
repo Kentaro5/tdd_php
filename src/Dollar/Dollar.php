@@ -13,6 +13,7 @@ class Dollar extends Money
         $this->amount = $amount;
     }
 
+    //P50では、ここMoneyだったけど、PHPだとどうやるのだろう。
     public function times(int $multipler):Object
     {
         return new Dollar($this->amount * $multipler);

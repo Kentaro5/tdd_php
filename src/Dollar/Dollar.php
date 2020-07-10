@@ -33,9 +33,5 @@ class Dollar extends Money
 
     }
 
-    public function equals(Object $object):Bool
-    {
-        $dollar = $object;
-        return $this->amount === $dollar->amount;
-    }
+
 }

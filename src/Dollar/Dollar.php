@@ -8,9 +8,9 @@ use App\Common\Money\Money;
 class Dollar extends Money
 {
 
-    public function __construct(int $amount)
+    public function __construct(int $amount, string $currency)
     {
-        $this->amount = $amount;
+        parent::__construct($amount, $currency);
     }
 
     //P50では、ここMoneyだったけど、PHPだとどうやるのだろう。
@@ -19,6 +19,5 @@ class Dollar extends Money
         return new Dollar($this->amount * $multipler);
 
     }
-
 
 }

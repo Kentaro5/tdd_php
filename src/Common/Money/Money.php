@@ -1,9 +1,14 @@
 <?php
 namespace App\Common\Money;
 
-class Money
+use App\Dollar\Dollar;
+use App\Franc\Franc;
+
+abstract class Money
 {
     protected int $amount;
+
+    abstract function times(Int $multiplier):Object;
 
     public function equals(Money $money):Bool
     {

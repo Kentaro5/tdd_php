@@ -2,10 +2,10 @@
 namespace App\Franc;
 
 
-class Franc
-{
+use App\Common\Money\Money;
 
-    private $amount;
+class Franc extends Money
+{
     public function __construct(int $amount)
     {
         $this->amount = $amount;

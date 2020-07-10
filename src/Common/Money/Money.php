@@ -9,4 +9,5 @@ class Money
     {
         return $this->amount === $money->amount;
     }
+
 }

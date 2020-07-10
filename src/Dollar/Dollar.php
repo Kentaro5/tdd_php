@@ -1,6 +1,7 @@
 <?php
 namespace App\Dollar;
 
+use App\Common\Money\Money;
 
 // TODO
 // $5 + 10 CHF = $10(レート2:1の場合)
@@ -17,10 +18,10 @@ namespace App\Dollar;
 // equalsの一般化
 // timesの一般化
 
-class Dollar
+
+class Dollar extends Money
 {
 
-    private $amount;
     public function __construct(int $amount)
     {
         $this->amount = $amount;

@@ -19,14 +19,10 @@ class Money
         return null;
     }
 
-
-    public function equals(Money $money):Bool
+    public function equals(Object $object):Bool
     {
-        $money_class = get_class($money);
-        $this_class = get_class($this);
 
-        //ここ他の人どうやって実装したか聞いてみよう。(P44)
-        return $this->amount === $money->amount && $money_class === $this_class;
+        return $this->amount === $object->amount && $this->currency === $object->currency;
     }
 
     public function currency():String

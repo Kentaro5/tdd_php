@@ -16,7 +16,7 @@ class Money
     }
 
     public function times(Int $multiplier){
-        return null;
+        return new Money($this->amount * $multiplier, $this->currency);
     }
 
     public function equals(Object $object):Bool

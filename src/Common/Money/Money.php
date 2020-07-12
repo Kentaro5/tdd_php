@@ -4,7 +4,7 @@ namespace App\Common\Money;
 use App\Dollar\Dollar;
 use App\Franc\Franc;
 
-abstract class Money
+class Money
 {
     protected int $amount;
     protected string $currency;
@@ -15,7 +15,9 @@ abstract class Money
         $this->currency = $currency;
     }
 
-    abstract public function times(Int $multiplier):Object;
+    public function times(Int $multiplier){
+        return null;
+    }
 
 
     public function equals(Money $money):Bool

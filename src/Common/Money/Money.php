@@ -4,7 +4,7 @@ namespace App\Common\Money;
 use App\Dollar\Dollar;
 use App\Franc\Franc;
 
-abstract class Money
+class Money
 {
     protected int $amount;
     protected string $currency;
@@ -15,16 +15,14 @@ abstract class Money
         $this->currency = $currency;
     }
 
-    abstract public function times(Int $multiplier):Object;
+    public function times(Int $multiplier){
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
 
-
-    public function equals(Money $money):Bool
+    public function equals(Object $object):Bool
     {
-        $money_class = get_class($money);
-        $this_class = get_class($this);
 
-        //ここ他の人どうやって実装したか聞いてみよう。(P44)
-        return $this->amount === $money->amount && $money_class === $this_class;
+        return $this->amount === $object->amount && $this->currency === $object->currency;
     }
 
     public function currency():String

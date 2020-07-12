@@ -18,14 +18,14 @@ class MoneyTest extends TestCase
         $five = Money::Dollar(5);
 
         //assertEqualsは==のため、値の比較などの場合はassertSame(===)の方が方まで見れて良い。
-        //assertEqualsは属性値のみを見る。逆にassertSameは全く同じかどうかをチェックする。
-        $this->assertEquals( Money::Dollar(10), $five->times(2));
-        $this->assertEquals( Money::Dollar(15), $five->times(3));
+        //assertEqualsは同じクラス、同じ属性値かどうかをチェックする。。
+        $this->assertTrue($five->times(2)->equals(Money::Dollar(10)));
+        $this->assertTrue($five->times(3)->equals(Money::Dollar(15)));
     }
 
     public function testEquality()
     {
-        $dollar =  Money::Dollar(5);
+        $dollar = Money::Dollar(5);
         $this->assertTrue( $dollar->equals(  Money::Dollar(5) ) );
         $this->assertFalse( $dollar->equals(  Money::Dollar(6) ) );
 
@@ -41,8 +41,8 @@ class MoneyTest extends TestCase
     {
         $five = Money::Franc(5);
 
-        $this->assertEquals(Money::Franc(10), $five->times(2));
-        $this->assertEquals(Money::Franc(15), $five->times(3));
+        $this->assertTrue($five->times(2)->equals(Money::Franc(10)));
+        $this->assertTrue($five->times(3)->equals(Money::Franc(15)));
     }
 
     public function testCurrency()
@@ -53,4 +53,11 @@ class MoneyTest extends TestCase
         $this->assertEquals('USD', $dollar->currency());
         $this->assertEquals('CHF', $franc->currency());
     }
+
+    public function testDifferentClassEquality()
+    {
+        $money = new Money(10, 'CHF');
+        $this->assertTrue($money->equals( new Franc(10, 'CHF') ));
+    }
+
 }

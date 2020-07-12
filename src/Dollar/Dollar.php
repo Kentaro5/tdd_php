@@ -13,11 +13,4 @@ class Dollar extends Money
         parent::__construct($amount, $currency);
     }
 
-    //P50では、ここMoneyだったけど、PHPだとどうやるのだろう。
-    public function times(int $multipler):Object
-    {
-        return new Dollar($this->amount * $multipler, $this->currency);
-
-    }
-
 }

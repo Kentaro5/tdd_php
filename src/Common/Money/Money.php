@@ -2,6 +2,7 @@
 namespace App\Common\Money;
 
 use App\Expression\Expression;
+use App\Sum\Sum;
 
 class Money implements Expression
 {
@@ -23,6 +24,14 @@ class Money implements Expression
 
         return $this->amount === $object->amount && $this->currency === $object->currency;
     }
+
+
+    public function reduce(String $to):Money
+    {
+
+        return $this;
+    }
+
 
     public function currency():String
     {

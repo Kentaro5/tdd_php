@@ -1,10 +1,9 @@
 <?php
 namespace App\Common\Money;
 
-use App\Dollar\Dollar;
-use App\Franc\Franc;
+use App\Expression\Expression;
 
-class Money
+class Money implements Expression
 {
     protected int $amount;
     protected string $currency;
@@ -30,6 +29,11 @@ class Money
         return $this->currency;
     }
 
+    public function plus(Money $addend):Expression
+    {
+        return new Money( $this->amount + $addend->amount, $this->currency );
+    }
+
     static public function Dollar(Int $amount):Money
     {
         return new Money($amount, 'USD');
@@ -39,5 +43,6 @@ class Money
     {
         return new Money($amount, 'CHF');
     }
+
 
 }

@@ -26,7 +26,7 @@ class Money implements Expression
     }
 
 
-    public function reduce(String $to):Money
+    public function reduce(Bank $bank, String $to):Money
     {
 
         return $this;

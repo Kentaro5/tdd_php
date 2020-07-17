@@ -30,12 +30,14 @@ class Money
         return $this->currency;
     }
 
-    static public function Dollar(Int $amount){
-        return new Dollar($amount, 'USD');
+    static public function Dollar(Int $amount):Money
+    {
+        return new Money($amount, 'USD');
     }
 
-    static public function Franc(Int $amount){
-        return new Franc($amount, 'CHF');
+    static public function Franc(Int $amount):Money
+    {
+        return new Money($amount, 'CHF');
     }
 
 }

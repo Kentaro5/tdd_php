@@ -30,19 +30,9 @@ class MoneyTest extends TestCase
         $this->assertFalse( $dollar->equals(  Money::Dollar(6) ) );
 
         $franc = Money::Franc(5);
-        $this->assertTrue( $franc->equals( Money::Franc(5) ) );
-        $this->assertFalse( $franc->equals( Money::Franc(6) ) );
 
         //FrancとDollarを比較
         $this->assertFalse( $franc->equals(  Money::Dollar(5) ) );
-    }
-
-    public function testFrancMultiplication()
-    {
-        $five = Money::Franc(5);
-
-        $this->assertTrue($five->times(2)->equals(Money::Franc(10)));
-        $this->assertTrue($five->times(3)->equals(Money::Franc(15)));
     }
 
     public function testCurrency()
@@ -52,12 +42,6 @@ class MoneyTest extends TestCase
 
         $this->assertEquals('USD', $dollar->currency());
         $this->assertEquals('CHF', $franc->currency());
-    }
-
-    public function testDifferentClassEquality()
-    {
-        $money = new Money(10, 'CHF');
-        $this->assertTrue($money->equals( new Franc(10, 'CHF') ));
     }
 
 }

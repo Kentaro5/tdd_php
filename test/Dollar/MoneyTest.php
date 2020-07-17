@@ -2,8 +2,7 @@
 namespace Test\Dollar;
 
 use App\Common\Money\Money;
-use App\Dollar\Dollar;
-use App\Franc\Franc;
+use App\Bank\Bank;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,5 +42,16 @@ class MoneyTest extends TestCase
         $this->assertEquals('USD', $dollar->currency());
         $this->assertEquals('CHF', $franc->currency());
     }
+
+    //$5 + $5 = 10のテスト
+    public function testDimpleAddition()
+    {
+        $five = Money::Dollar(5);
+        $sum = $five->plus($five);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::Dollar(10), $reduced);
+    }
+
 
 }

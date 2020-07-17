@@ -4,6 +4,7 @@ namespace Test\Dollar;
 use App\Common\Money\Money;
 use App\Bank\Bank;
 use App\Sum\Sum;
+use App\Pair\Pair;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -74,6 +75,7 @@ class MoneyTest extends TestCase
 
         $this->assertTrue( $seven->equals( $result ) );
     }
+
     //Bankに渡すreduceがExpressionではなく、Moneyインスタンスの場合のテスト
     public function testReduceMoney()
     {
@@ -82,4 +84,22 @@ class MoneyTest extends TestCase
         $dollar = Money::Dollar(1);
         $this->assertTrue($dollar->equals($result));
     }
+
+    //同じ為替レートで正しい数値が返ってくるかテスト
+    public function testIdentityRate()
+    {
+        $bank = new Bank();
+        $this->assertSame(1, $bank->rate('USD', 'USD'));
+    }
+
+    //違う通貨の結果を比較するテスト
+    public function testReduceMoneyDifferentCurrency()
+    {
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+        $result = $bank->reduce(Money::Franc(2), 'USD');
+        $one = Money::Dollar(1);
+        $this->assertTrue( $one->equals( $result ) );
+    }
+
 }

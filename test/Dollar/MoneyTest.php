@@ -3,6 +3,7 @@ namespace Test\Dollar;
 
 use App\Common\Money\Money;
 use App\Bank\Bank;
+use App\Sum\Sum;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -50,8 +51,35 @@ class MoneyTest extends TestCase
         $sum = $five->plus($five);
         $bank = new Bank();
         $reduced = $bank->reduce($sum, 'USD');
+
         $this->assertEquals(Money::Dollar(10), $reduced);
     }
 
+    //plusメソッドがSumのインスタンスを返すかチェックするテスト
+    public function testPlusReturnsSum()
+    {
+        $five = Money::Dollar(5);
+        $sum =  $five->plus($five);
+        $this->assertSame($five->amount(), $sum->augend);
+        $this->assertSame($five->amount(), $sum->addend);
+    }
 
+    //足し算の結果を各通貨に置き換えると同じ金額になるかみるテスト。
+    public function testReduceSum()
+    {
+        $sum = new Sum(Money::Dollar(3), Money::Dollar(4));
+        $bank = new Bank();
+        $result = $bank->reduce($sum, 'USD');
+        $seven = Money::Dollar(7);
+
+        $this->assertTrue( $seven->equals( $result ) );
+    }
+    //Bankに渡すreduceがExpressionではなく、Moneyインスタンスの場合のテスト
+    public function testReduceMoney()
+    {
+        $bank = new Bank();
+        $result = $bank->reduce(Money::Dollar(1), 'USD');
+        $dollar = Money::Dollar(1);
+        $this->assertTrue($dollar->equals($result));
+    }
 }

@@ -3,6 +3,7 @@ namespace App\Common\Money;
 
 use App\Expression\Expression;
 use App\Sum\Sum;
+use App\Bank\Bank;
 
 class Money implements Expression
 {
@@ -26,10 +27,12 @@ class Money implements Expression
     }
 
 
-    public function reduce(String $to):Money
+    public function reduce(Bank $bank, String $to):Money
     {
 
-        return $this;
+        $rate = $bank->rate( $this->currency, $to );
+
+        return new Money($this->amount / $rate, $to);
     }
 
 

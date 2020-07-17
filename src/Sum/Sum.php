@@ -4,6 +4,7 @@ namespace App\Sum;
 
 use App\Common\Money\Money;
 use App\Expression\Expression;
+use App\Bank\Bank;
 
 class Sum implements Expression{
 
@@ -16,7 +17,7 @@ class Sum implements Expression{
         $this->addend = $addend->amount();
     }
 
-    public function reduce(String $to):Money
+    public function reduce(Bank $bank, String $to):Money
     {
         $amount = $this->augend + $this->addend;
 

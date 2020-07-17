@@ -2,6 +2,7 @@
 namespace App\Common\Money;
 
 use App\Expression\Expression;
+use App\Sum\Sum;
 
 class Money implements Expression
 {
@@ -24,14 +25,27 @@ class Money implements Expression
         return $this->amount === $object->amount && $this->currency === $object->currency;
     }
 
+
+    public function reduce(String $to):Money
+    {
+
+        return $this;
+    }
+
+
     public function currency():String
     {
         return $this->currency;
     }
 
+    public function amount():Int
+    {
+        return $this->amount;
+    }
+
     public function plus(Money $addend):Expression
     {
-        return new Money( $this->amount + $addend->amount, $this->currency );
+        return new Sum( $this, $addend);
     }
 
     static public function Dollar(Int $amount):Money

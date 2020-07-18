@@ -3,7 +3,6 @@
 namespace App\Bank;
 
 use App\Expression\Expression;
-use App\Common\Money\Money;
 use App\Pair\Pair;
 
 class Bank {

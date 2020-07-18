@@ -23,4 +23,9 @@ class Sum implements Expression{
 
         return new Money($amount, $to);
     }
+
+    public function plus(Expression $addend):Expression
+    {
+        return null;
+    }
 }

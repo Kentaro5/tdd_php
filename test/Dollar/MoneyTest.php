@@ -61,8 +61,9 @@ class MoneyTest extends TestCase
     {
         $five = Money::Dollar(5);
         $sum =  $five->plus($five);
-        $this->assertSame($five->amount(), $sum->augend);
-        $this->assertSame($five->amount(), $sum->addend);
+
+        $this->assertSame($five->amount(), $sum->augend->amount());
+        $this->assertSame($five->amount(), $sum->addend->amount());
     }
 
     //足し算の結果を各通貨に置き換えると同じ金額になるかみるテスト。
@@ -100,6 +101,20 @@ class MoneyTest extends TestCase
         $result = $bank->reduce(Money::Franc(2), 'USD');
         $one = Money::Dollar(1);
         $this->assertTrue( $one->equals( $result ) );
+    }
+
+    //違う通貨を足し算した時に正しいふるまいになるかチェックするテスト
+    public function testMixedAddition()
+    {
+        $fiveBucks = Money::Dollar(5);
+        $tenFrancs = Money::Franc(10);
+
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+
+        $result = $bank->reduce($fiveBucks->plus($tenFrancs), 'USD');
+
+        $this->assertTrue($result->equals(Money::Dollar(10)));
     }
 
 }

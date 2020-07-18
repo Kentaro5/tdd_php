@@ -117,4 +117,42 @@ class MoneyTest extends TestCase
         $this->assertTrue($result->equals(Money::Dollar(10)));
     }
 
+    //通貨を加えていき、更に後から通過を加えた場合に正しい値になっているかチェックするテスト。
+    public function testSumPlusMoney()
+    {
+        $fiveBucks = Money::Dollar(5);
+        $tenFrancs = Money::Franc(10);
+
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+
+        $sum = new Sum($fiveBucks, $tenFrancs);
+
+        $sum = $sum->plus($fiveBucks);
+        $result = $bank->reduce($sum, 'USD');
+
+        $fifteen = Money::Dollar(15);
+        $this->assertTrue( $fifteen->equals($result) );
+    }
+
+    //掛け算のテスト。
+    public function testSumTimes()
+    {
+        $fiveBucks = Money::Dollar(5);
+        $tenFrancs = Money::Franc(10);
+
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+
+        $sum = new Sum($fiveBucks, $tenFrancs);
+
+        $sum = $sum->times(2);
+        $result = $bank->reduce($sum, 'USD');
+
+        $twenty = Money::Dollar(20);
+        $this->assertTrue( $twenty->equals($result) );
+
+    }
+
+
 }
